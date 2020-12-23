@@ -198,11 +198,13 @@ void main(int argc, char **argv, u32 magicWord)
         //Always force a SysNAND boot when quitting AGB_FIRM
         if(CFG_BOOTENV == 7)
         {
-            nandType = FIRMWARE_SYSNAND;
-            firmSource = (BOOTCFG_NAND != 0) == (BOOTCFG_FIRM != 0) ? FIRMWARE_SYSNAND : (FirmwareSource)BOOTCFG_FIRM;
+            //nandType = FIRMWARE_SYSNAND;
+            //firmSource = (BOOTCFG_NAND != 0) == (BOOTCFG_FIRM != 0) ? FIRMWARE_SYSNAND : (FirmwareSource)BOOTCFG_FIRM;
+            nandType = (FirmwareSource)BOOTCFG_NAND;
+            firmSource = (FirmwareSource)BOOTCFG_FIRM;
 
             //Prevent multiple boot options-forcing
-            if(nandType != BOOTCFG_NAND || firmSource != BOOTCFG_FIRM) isNoForceFlagSet = true;
+            //if(nandType != BOOTCFG_NAND || firmSource != BOOTCFG_FIRM) isNoForceFlagSet = true;
 
             goto boot;
         }
